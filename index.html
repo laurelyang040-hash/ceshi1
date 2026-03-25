@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>云伴 - AI小手机</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="phone">
+      <header class="status-bar">
+        <div class="left">云伴</div>
+        <div class="right"><span id="clock">00:00</span></div>
+      </header>
+
+      <section class="hero-card">
+        <div>
+          <p class="eyebrow">陪伴模式</p>
+          <h1 id="companionName">小云</h1>
+          <p id="companionDesc">冷静、温柔、会主动来找你。</p>
+        </div>
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatarPreview">云</div>
+        </div>
+      </section>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="chat">聊天</button>
+        <button class="tab" data-tab="memory">记忆</button>
+        <button class="tab" data-tab="settings">设置</button>
+      </nav>
+
+      <main class="screen">
+        <section class="tab-panel active" id="tab-chat">
+          <div class="hint-card">
+            <strong>说明</strong>
+            <p>这是可直接上传到 GitHub Pages 的静态版底包。所有数据保存在浏览器本地，可导出备份。</p>
+          </div>
+
+          <div class="message-list" id="messageList"></div>
+
+          <form id="composer" class="composer">
+            <textarea id="messageInput" rows="2" placeholder="给 TA 发一句话……"></textarea>
+            <div class="composer-actions">
+              <button type="button" class="ghost" id="simulateReplyBtn">模拟回复</button>
+              <button type="submit" class="primary">发送</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tab-panel" id="tab-memory">
+          <div class="card">
+            <h2>长期记忆</h2>
+            <textarea id="memoryInput" rows="10" placeholder="写下角色设定、世界书、你们之间的重要约定……"></textarea>
+            <button class="primary block" id="saveMemoryBtn">保存记忆</button>
+          </div>
+
+          <div class="card">
+            <h2>快速导出</h2>
+            <p>把聊天记录、角色设定、记忆一起导出为 JSON 文件。</p>
+            <div class="row-actions">
+              <button class="ghost" id="exportBtn">导出数据</button>
+              <label class="ghost file-label">
+                导入数据
+                <input type="file" id="importFile" accept="application/json" hidden />
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="tab-settings">
+          <div class="card">
+            <h2>角色设置</h2>
+            <label>名称<input id="nameInput" type="text" placeholder="例如：小云" /></label>
+            <label>一句话介绍<input id="descInput" type="text" placeholder="例如：冷静、温柔、会主动来找你" /></label>
+            <label>头像文字<input id="avatarInput" type="text" maxlength="2" placeholder="云" /></label>
+            <button class="primary block" id="saveProfileBtn">保存角色</button>
+          </div>
+
+          <div class="card">
+            <h2>主动消息</h2>
+            <label class="switch-row">
+              <span>开启伪主动消息</span>
+              <input type="checkbox" id="autoPingToggle" />
+            </label>
+            <p class="small">开启后，页面打开期间会按间隔生成角色消息。静态站无法像原生 App 那样真正后台常驻，但可作为 GitHub 版过渡方案。</p>
+          </div>
+
+          <div class="card danger-zone">
+            <h2>清空</h2>
+            <button class="danger block" id="clearBtn">清空全部本地数据</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <template id="messageTemplate">
+    <article class="message-row">
+      <div class="bubble"></div>
+    </article>
+  </template>
+
+  <script src="./script.js"></script>
+</body>
+</html>
